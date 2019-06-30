@@ -24,14 +24,14 @@ class Engine:
         totalValueAttacking = 0
 
         for i in self.grid:
-            if i.color == piece.color:
+            if i.color == target.color:
                 for v in i.moves():
                     if v == pos:
                         protection += 1
                         totalValueProtecting += i.value
                         protectors.append(i)
 
-            if i.color == piece.oppColor:
+            if i.color == target.oppColor:
                 for c in i.moves():
                     if c == pos:
                         attack += 1
@@ -57,15 +57,19 @@ class Engine:
         highestdeficit = 0
         for i in self.grid:
             if i.color == self.oppColor:
-                if capture(i)[0] == True and capture(i)[1] > highestdeficit:
-                    highestdeficit = capture(i)[1]
-                    sequence = capture(i)[2]
+                if self.outcome(i)[0] == True and self.outcome(i)[1] > highestdeficit:
+                    highestdeficit = self.outcome(i)[1]
+                    sequence = self.outcome(i)[2]
 
         return sequence
 
     def do(self):
-        recommendedCapture = recomendedCapture()
+        recommendedcapture = self.recommendedCapture()
         recomCap = []
+
+        for k in recommendedcapture:
+            recomCap.append(k)
+
         piece = []
         for b in self.grid:
             if b.__class__.__name__ == recomCap[0]:
@@ -74,4 +78,4 @@ class Engine:
                         piece.append(g)
 
         piece[0].moveTo(recomCap[1], int(recomCap[2]))
-        print(recommendedCapture)
+        print(recommendedcapture)

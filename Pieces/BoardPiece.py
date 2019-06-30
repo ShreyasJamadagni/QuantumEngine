@@ -5,4 +5,4 @@ class BoardPiece(Pieces):
         Pieces.__init__(self, x, y, "n", grid)
 
     def moves(self):
-        
+        return []

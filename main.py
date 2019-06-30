@@ -6,11 +6,13 @@ from Player import Player
 
 def main():
     board = Board()
-    Player = Player("w", board)
-    Engine = Engine("b", board)
+    player = Player("w", board)
+    engine = Engine("b", board)
     finished = False
 
     while (finished == False):
-        Player.do(move=input('Your move: '))
-        Engine.do()
+        player.do()
+        engine.do()
         finished = Board.check()
+
+main()
