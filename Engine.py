@@ -33,7 +33,7 @@ class Engine:
 
             if i.color == piece.oppColor:
                 for c in i.moves():
-                    if c == pos
+                    if c == pos:
                         attack += 1
                         totalValueAttacking += i.value
                         attackers.append(i)

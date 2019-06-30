@@ -6,6 +6,23 @@ class Board:
     height = [1, 2, 3, 4, 5, 6, 7, 8]
     grid = []
 
+    def check(self):
+        kings = []
+        for g in self.grid:
+            if g.__class__.__name__ == "King":
+                kings.append(g)
+
+        for h in kings:
+            if len(h.moves()) == 0:
+                for n in self.grid:
+                    if n.__class__.__name__ != "King":
+                        for j in n.moves():
+                            if j == h.x + str(h.y):
+                                return True
+            else:
+                return False
+
+
     def gridtochess(self, n):
         x3 = ""
         d = 64 - n
